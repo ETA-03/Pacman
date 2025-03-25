@@ -9,7 +9,7 @@ from time import sleep
 from random import randint
 
 # ======================================================================
-# Karakter Dasar Game
+# Game base
 # ======================================================================
 
 class Agent:
@@ -29,7 +29,7 @@ class Agent:
     def move_right(self):
         self.location[1] += 1
 
-    # === Cek Gerakan Valid ===
+    # === move validation check ===
     def is_move_up_valid(self, map):
         if map[self.location[0] - 1][self.location[1]] != 0:
             return True
@@ -87,7 +87,7 @@ class Agent:
             self.move_left()
 
 # ======================================================================
-# Kelas Player dan Ghost
+# class player and ghost
 # ======================================================================
 
 class Player(Agent):
@@ -152,15 +152,15 @@ class Game:
         self.ghost2 = Ghost([5, 5])
         self.score = 0
 
-    # === PETA GAME ===
+    # === MAPS ===
     def print_map(self):
         """
-        Menampilkan peta ke terminal dengan simbol:
-        P = Pemain
-        1 = Hantu 1
-        2 = Hantu 2
-        # = Dinding
-        . = Makanan
+        Symbols:
+        P = Player
+        1 = Ghost 1
+        2 = Ghost 2
+        # = Walls
+        . = Food
         """
         for i in range(0, 11):
             for j in range(0, 20):
@@ -191,7 +191,7 @@ class Game:
             return False
 
 # ======================================================================
-# Gerakan Pemain
+# player movement
 # ======================================================================
     def move_player_up(self):
         if self.player.is_move_up_valid(self.map):
