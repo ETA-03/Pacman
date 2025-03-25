@@ -178,8 +178,7 @@ class Game:
                     print(" ", end=" ")
             print()
 
-    # === Cek Apakah Game Selesai ===
-    # Game selesai jika tidak ada makanan tersisa atau pemain tertangkap hantu.
+    # The game is over if there is no food left or the player is caught by a ghost.
     def is_game_over(self):
         if all(row.count(1) == 0 for row in self.map):
 
@@ -224,7 +223,7 @@ class Game:
                 self.score += 10  # Add 10 to score for each point eaten
                 self.map[self.player.location[0]][self.player.location[1]] = 2
                
-    # === mengimplementasikan Minimax dengan Alpha-Beta Pruning ===
+    # === Implementation Minimax with Alpha-Beta Pruning ===
     def move_player(self, depth, mode):
         movement = ""
         if mode == "minimax":
@@ -242,9 +241,9 @@ class Game:
             self.move_player_right()
 
 # ======================================================================
-# Menjalankan Game
+# Running game
 # ======================================================================
-# menampilkan peta, menggerakkan pemain & hantu, lalu mengecek kondisi game.
+# display the map, move the player & ghosts, and then check the game state.
     def run_game(self, depth, mode):
         command = "clear"
         if os.name == "nt":
@@ -284,14 +283,14 @@ class Game:
         return self.score, itr
 
 # ======================================================================
-# menghitung jarak Manhattan antara dua titik dalam ruang dua dimensi
+# calculate the Manhattan distance between two points in two-dimensional space
 # ======================================================================
 
 def manhattan_distance(p1, p2):
     return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
 
 # ======================================================================
-# Mencari jalur terpendek menuju makanan dalam peta
+# Find the shortest path to food on the map
 # ======================================================================
 
 def shortest_path(map, p1):
@@ -418,5 +417,5 @@ if __name__ == "_main_":
     print("Game Over!")
     
     final_score = score - iterations
-    #print("Final Score:", final_score)
+    print("Final Score:", final_score)
     print("Total Iterations:",iterations)
